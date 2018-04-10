@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Oasis</groupId>
+  <artifactId>oasis</artifactId>
+  <packaging>jar</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>oasis Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <parent>  
+    <groupId>org.springframework.boot</groupId>  
+    <artifactId>spring-boot-starter-parent</artifactId>  
+    <version>1.4.1.RELEASE</version>  
+  </parent>  
+   <repositories>      
+        <repository>      
+            <id>spring-snapshots</id>      
+            <url>http://repo.spring.io/snapshot</url>      
+            <snapshots><enabled>true</enabled></snapshots>      
+        </repository>      
+        <repository>      
+            <id>spring-milestones</id>      
+            <url>http://repo.spring.io/milestone</url>      
+        </repository>      
+    </repositories>      
+    <pluginRepositories>      
+        <pluginRepository>      
+            <id>spring-snapshots</id>      
+            <url>http://repo.spring.io/snapshot</url>      
+        </pluginRepository>      
+        <pluginRepository>      
+            <id>spring-milestones</id>      
+            <url>http://repo.spring.io/milestone</url>      
+        </pluginRepository>      
+    </pluginRepositories>  
+    
+    <dependencies>  
+        <dependency>    
+        <groupId>org.springframework.boot</groupId>    
+        <artifactId>spring-boot-starter-test</artifactId>    
+        <scope>test</scope>    
+    </dependency>    
+    <dependency>    
+        <groupId>org.springframework.boot</groupId>    
+        <artifactId>spring-boot-starter-web</artifactId>    
+    </dependency>    
+    <dependency>  
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-starter-data-jpa</artifactId>  
+    </dependency>  
+    <dependency>    
+        <groupId>org.springframework.hateoas</groupId>    
+        <artifactId>spring-hateoas</artifactId>    
+    </dependency>    
+    <dependency>    
+        <groupId>org.springframework.boot</groupId>    
+        <artifactId>spring-boot-starter-actuator</artifactId>    
+    </dependency>  
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>jstl</artifactId>
+	</dependency>
+
+	<!-- mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+    <!-- 测试模块，包括JUnit、Hamcrest、Mockito -->
+	<dependency>
+ 	  <groupId>org.springframework.boot</groupId>
+ 	  <artifactId>spring-boot-starter-test</artifactId>
+  	  <scope>test</scope>
+	</dependency>
+	<!--用于编译jsp-->
+	<dependency>
+		 <groupId>org.apache.tomcat.embed</groupId>
+   		 <artifactId>tomcat-embed-jasper</artifactId>
+   		 <scope>provided</scope>
+	</dependency>
+    </dependencies> 
+  <build>
+    <finalName>oasis</finalName>
+    <plugins>  
+    <plugin>  
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-maven-plugin</artifactId>  
+    </plugin>  
+  </plugins>  
+  <resources>
+     <!-- 打包时将jsp文件拷贝到META-INF目录下 -->
+         <resource>
+                <!-- 指定resources插件处理哪个目录下的资源文件 -->
+                <directory>src/main/webapp</directory>
+                <!--注意此次必须要放在此目录下才能被访问到 -->
+                <targetPath>META-INF/resources</targetPath>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+         </resource>
+         <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <filtering>false</filtering>
+         </resource>
+  </resources>
+  </build>
+</project>
