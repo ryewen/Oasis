@@ -62,14 +62,19 @@
         <artifactId>spring-boot-starter-actuator</artifactId>    
     </dependency>  
     <dependency>
-    	<groupId>javax.servlet</groupId>
-    	<artifactId>jstl</artifactId>
+    	<groupId>jstl</groupId>
+   		 <artifactId>jstl</artifactId>
+    	<version>1.2</version>
 	</dependency>
-    <dependency>
-        <groupId>cpdetector</groupId>
-        <artifactId>cpdetector</artifactId>
-        <version>1.0.7</version>
-    </dependency>
+    <!-- https://mvnrepository.com/artifact/net.sourceforge.cpdetector/cpdetector -->
+	<!-- https://mvnrepository.com/artifact/net.sourceforge.cpdetector/cpdetector -->
+	<dependency>
+		<groupId>cpdetector</groupId>
+		<artifactId>cpdetector</artifactId>
+		<version>1.0.7</version>
+	</dependency>
+	
+
 	<!-- mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>

@@ -7,27 +7,34 @@ body
 {
 	margin-top : 30px;
 	margin-bottom : 20px;
-	margin-left : 20%;
-	margin-right : 20%;
+	margin-left : auto;
+	margin-right : auto;
+	max-width : 900px;
 }
 
-.right
+#navigation
 {
-	margin-top : 20px;
-	float : right;
+	display:inline-block; 
+	text-align : right;
 	line-height : 1.6;
 }
 
-.right2
+#leftIndex
 {
-	margin-bottom : 20px;
-	float : right;
+	display:inline-block; 
+	line-height : 1.6;
+}
+
+#rightIndex
+{
+	display:inline-block; 
+	text-align : right;
 	line-height : 1.6;
 }
 
 #title
 {
-	width : 400px;
+	display:inline-block; 
 	font-family : PingFang SC,Hiragino Sans GB,Microsoft Yahei,WenQuanYi Micro Hei,sans-serif;
 	font-size : 2.2rem;
     font-weight : 600;
@@ -39,19 +46,83 @@ body
 {
 	font : 300 16px/1.8 -apple-system,PingFang SC,Microsoft Yahei,Lantinghei SC,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif;
 	text-indent : 2em;
+	line-height : 1.6;
 }
 
-a:link { 
-	color : #222320; 
-	text-decoration : underline;
-} 
+#textnospace
+{
+	font : 300 16px/1.8 -apple-system,PingFang SC,Microsoft Yahei,Lantinghei SC,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif;
+	line-height : 1.6;
+}
 
-a:visited { 
-	color : #222320; 
-	text-decoration : underline; 
-} 
-
-#titleDiv
+.titleDiv
 {
 	margin-bottom : 40px;
+	width : 100%;
+}
+
+.func
+{
+	line-height : 60px;
+	padding : 20px 40px 20px 40px;
+	font-size : 1.2em;
+}
+
+.funcDiv
+{
+	width : 200px;
+	height : 40px;
+	margin-top : 15px;
+	margin-bottom : 15px;
+	text-align : center;
+}
+
+.buttonColor
+{
+	color : white;
+	background-color : rgb(66, 184, 221);
+	text-decoration : none;
+}
+
+.bookDiv
+{
+	width : 300px;
+	text-align : center;
+	background-color : #44C5E2;
+}
+
+.index
+{
+	line-height : 60px;
+	padding : 20px 40px 20px 40px;
+	font-size : 1.2em;
+}
+
+.indexDiv
+{
+	width : 100px;
+	text-align : center;
+	background-color : #44C5E2;
+}
+
+.center
+{
+	max-width : 200px;
+	margin-left : auto;
+	margin-right : auto;
+}
+
+.upButton
+{
+	line-height : 10px;
+}
+
+.indexButton
+{
+	line-height : 30px;
+	margin : 10px;
+	width : 50px;
+	height : 50px;
+	color : white;
+	background-color : rgb(66, 184, 221);
 }

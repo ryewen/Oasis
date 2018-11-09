@@ -4,19 +4,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Create User</title>
+<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css" integrity="sha384-CCTZv2q9I9m3UOxRLaJneXrrqKwUNOzZ6NGEUMwHtShDJ+nCoiXJCAgi05KfkLGY" crossorigin="anonymous">
 <link href="/css/style.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<div id="main">
-	<p>Create User</p>
-	<form action="/createUserForm" method="post">
-		<table>
-			<tr><th>Username</th><td><input type="text" name="username" /></td></tr>
-			<tr><th>Password</th><td><input type="password" name="password" /></td></tr>
-			<tr><th>Authority</th><td><select name="authority"><option value="user">User</option><option value="admin">Admin</option></select></td></tr>
-			<tr><th></th><td><input type="submit" value="submit" /></td></tr>
-		</table>
+	<span>Create User&nbsp&nbsp<a href="/home" class="pure-button upButton">Home</a></span>
+	<form class="pure-form pure-form-stacked" action="/createUserForm" method="post">
+    <fieldset>
+
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" placeholder="Username">
+
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="Password">
+
+		<label for="authority">Authority</label>
+		<select id="authority" name="authority"><option value="user">User</option><option value="admin">Admin</option></select>
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+    </fieldset>
 	</form>
 	</div>
 </body>

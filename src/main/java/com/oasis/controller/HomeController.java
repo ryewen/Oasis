@@ -47,9 +47,23 @@ public class HomeController {
 	
 	public static final String USER_SESSION = "user";
 	
-	//private static final String DIR_PATH = "/home/novel/";
+	private static String DIR_PATH = "";
 	
-	private static final String DIR_PATH = "D:/files/";
+	static {
+		if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
+			DIR_PATH = "/home/novel/";
+		} else {
+			DIR_PATH = "D:/files/";
+		}
+	}
+	
+	private static final int DOGCOM_STATUS_RUNNING = 1;
+	
+	private static final int DOGCOM_STATUS_CLOSING = 0;
+	
+	private static final int DOGCOM_STATUS_STOP = -1;
+	
+	private static int DOGCOM_STATUS = DOGCOM_STATUS_STOP; //Running Closing Stop 
 
 	@Autowired
 	UserService userService;
@@ -79,6 +93,14 @@ public class HomeController {
 	@ResponseBody
 	public ModelAndView loginView() {
 		return new ModelAndView("/login");
+	}
+	
+	@RequestMapping("/logout")
+	@ResponseBody
+	public ModelAndView logout(HttpServletRequest request) {
+		if (! userService.ifLogined(request)) return new ModelAndView("redirect:/login");
+		request.getSession().removeAttribute(USER_SESSION);
+		return new ModelAndView("redirect:/login");
 	}
 	
 	@RequestMapping(value = "/loginForm", method = RequestMethod.POST)
@@ -197,7 +219,7 @@ public class HomeController {
 		for (File file : files) txtNums.add(Integer.valueOf(file.getName().split(".txt")[0]));
 		Collections.sort(txtNums);
 		List<List<Integer>> numRows = new ArrayList<List<Integer>>();
-		int rowSize = 4;
+		int rowSize = 5;
 		int i = 0;
 		List<Integer> numRow = null;
 		Iterator<Integer> it = txtNums.iterator();
@@ -231,7 +253,12 @@ public class HomeController {
 			BufferedReader bfr = new BufferedReader(new InputStreamReader(new FileInputStream(txt), "utf-8"));
 			String str = null;
 			while ((str = bfr.readLine()) != null) {
-				text += "<p id='text'>";
+				if (str.equals("") || str.equals("　")) continue;
+				if (str.length() >= 2 && str.substring(0, 2).equals("　　")) {
+					text += "<p>";
+				} else {
+					text += "<p id='text'>";
+				}
 				text += str;
 				text += "</p>";
 			}
@@ -309,5 +336,71 @@ public class HomeController {
 		else
 			return new ModelAndView("/error");
 		return new ModelAndView("/success");
+	}
+	
+	@RequestMapping(value = "/dogcomStatus")
+	@ResponseBody
+	public ModelAndView dogcomStatus(HttpServletRequest request) {
+		if (! userService.ifLogined(request)) return new ModelAndView("redirect:/login");
+		if (! ((User) request.getSession().getAttribute(USER_SESSION)).getAuthority().equals(User.AUTH_ADMIN)) return new ModelAndView("/error");
+		ModelAndView model = new ModelAndView("/dogcomStatus");
+		String status = "";
+		switch (this.DOGCOM_STATUS) {
+			case 1:
+				status = "Running";
+				break;
+			case 0:
+				status = "Closing";
+				break;
+			case -1:
+				status = "Stop";
+				break;
+			default:
+				status = "Error";
+		}
+		model.addObject("status", status);
+		return model;
+	}
+	
+	@RequestMapping(value = "/runningDogcom")
+	@ResponseBody
+	public String runningDogcom(HttpServletRequest request, String username, String password) {
+		if (username == null || password == null) return "error";
+		if (username.equals("admin") && password.equals("123456")) {
+			this.DOGCOM_STATUS = this.DOGCOM_STATUS_RUNNING;
+			return "success";
+		}
+		return "error";
+	}
+	
+	@RequestMapping(value = "/closeDogcom")
+	@ResponseBody
+	public ModelAndView closeDogcom(HttpServletRequest request) {
+		if (! userService.ifLogined(request)) return new ModelAndView("redirect:/login");
+		if (! ((User) request.getSession().getAttribute(USER_SESSION)).getAuthority().equals(User.AUTH_ADMIN)) return new ModelAndView("/error");
+		this.DOGCOM_STATUS = this.DOGCOM_STATUS_CLOSING;
+		System.out.println(this.DOGCOM_STATUS);
+		return new ModelAndView("redirect:/home");
+	}
+	
+	@RequestMapping(value = "/ifCloseDogcom")
+	@ResponseBody
+	public int ifCloseDogcom(HttpServletRequest request, String username, String password) {
+		if (username == null || password == null) return -1;
+		if (username.equals("admin") && password.equals("123456")) {
+			return 1 - this.DOGCOM_STATUS;
+		}
+		return -1;
+	}
+	
+	@RequestMapping(value = "/closedDogcom")
+	@ResponseBody
+	public String closedDogcom(HttpServletRequest request, String username, String password) {
+		if (username == null || password == null) return "error";
+		if (username.equals("admin") && password.equals("123456")) {
+			this.DOGCOM_STATUS = this.DOGCOM_STATUS_STOP;
+			return "success";
+		}
+		return "error";
 	}
 }

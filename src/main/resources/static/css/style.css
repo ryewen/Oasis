@@ -9,13 +9,12 @@ body
 	margin-bottom : 20px;
 	margin-left : auto;
 	margin-right : auto;
-	width : 900px;
+	max-width : 900px;
 }
 
 #navigation
 {
 	display:inline-block; 
-	width : 400px;
 	text-align : right;
 	line-height : 1.6;
 }
@@ -23,14 +22,12 @@ body
 #leftIndex
 {
 	display:inline-block; 
-	width : 450px;
 	line-height : 1.6;
 }
 
 #rightIndex
 {
 	display:inline-block; 
-	width : 440px;
 	text-align : right;
 	line-height : 1.6;
 }
@@ -38,7 +35,6 @@ body
 #title
 {
 	display:inline-block; 
-	width : 500px;
 	font-family : PingFang SC,Hiragino Sans GB,Microsoft Yahei,WenQuanYi Micro Hei,sans-serif;
 	font-size : 2.2rem;
     font-weight : 600;
@@ -50,21 +46,19 @@ body
 {
 	font : 300 16px/1.8 -apple-system,PingFang SC,Microsoft Yahei,Lantinghei SC,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif;
 	text-indent : 2em;
+	line-height : 1.6;
 }
 
-a:link { 
-	color : #222320; 
-	text-decoration : underline;
-} 
+#textnospace
+{
+	font : 300 16px/1.8 -apple-system,PingFang SC,Microsoft Yahei,Lantinghei SC,Hiragino Sans GB,Microsoft Sans Serif,WenQuanYi Micro Hei,sans-serif;
+	line-height : 1.6;
+}
 
-a:visited { 
-	color : #222320; 
-	text-decoration : underline; 
-} 
-
-#titleDiv
+.titleDiv
 {
 	margin-bottom : 40px;
+	width : 100%;
 }
 
 .func
@@ -77,15 +71,24 @@ a:visited {
 .funcDiv
 {
 	width : 200px;
+	height : 40px;
+	margin-top : 15px;
+	margin-bottom : 15px;
 	text-align : center;
-	background-color : #34E5C5;
+}
+
+.buttonColor
+{
+	color : white;
+	background-color : rgb(66, 184, 221);
+	text-decoration : none;
 }
 
 .bookDiv
 {
 	width : 300px;
 	text-align : center;
-	background-color : #34E5C5;
+	background-color : #44C5E2;
 }
 
 .index
@@ -99,5 +102,27 @@ a:visited {
 {
 	width : 100px;
 	text-align : center;
-	background-color : #34E5C5;
+	background-color : #44C5E2;
+}
+
+.center
+{
+	max-width : 200px;
+	margin-left : auto;
+	margin-right : auto;
+}
+
+.upButton
+{
+	line-height : 10px;
+}
+
+.indexButton
+{
+	line-height : 30px;
+	margin : 10px;
+	width : 50px;
+	height : 50px;
+	color : white;
+	background-color : rgb(66, 184, 221);
 }
